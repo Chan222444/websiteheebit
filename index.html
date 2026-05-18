@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>희빛스토리 | 당신의 이야기가 빛나는 곳</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Pretendard Font -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
+    
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Pretendard', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        background: '#fcfbf9',
+                        surface: '#ffffff',
+                        zinc: {
+                            50: '#fafafa',
+                            100: '#f4f4f5',
+                            200: '#e4e4e7',
+                            300: '#d4d4d8',
+                            400: '#a1a1aa',
+                            500: '#71717a',
+                            600: '#52525b',
+                            700: '#3f3f46',
+                            800: '#27272a',
+                            900: '#18181b',
+                            950: '#09090b',
+                        },
+                        accent: {
+                            light: '#fde68a',
+                            DEFAULT: '#fbbf24',
+                            dark: '#d97706',
+                        }
+                    },
+                    transitionTimingFunction: {
+                        'supanova': 'cubic-bezier(0.16, 1, 0.3, 1)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base styles & Utilities */
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.zinc.900');
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .break-keep-all {
+            word-break: keep-all;
+        }
+
+        /* Noise Texture for Premium Materiality */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 60;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Double Bezel Glass Architecture */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 
+                0 4px 24px -1px rgba(0, 0, 0, 0.02),
+                inset 0 1px 0 rgba(255, 255, 255, 1);
+        }
+
+        .glass-nav {
+            background: rgba(252, 251, 249, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Custom Scroll Entry Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            filter: blur(4px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Floating Animation for Hero Asset */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Custom Button Hover */
+        .btn-primary {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px -10px rgba(9, 9, 11, 0.3);
+        }
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+        
+        .btn-secondary {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-secondary:hover {
+            transform: scale(1.02);
+            background-color: theme('colors.zinc.50');
+            border-color: theme('colors.zinc.300');
+        }
+        .btn-secondary:active {
+            transform: scale(0.98);
+        }
+    </style>
+
+      
+    <style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Pretendard, system-ui, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.-inset-4{inset:-1rem}.top-0{top:0px}.bottom-6{bottom:1.5rem}.left-6{left:1.5rem}.right-6{right:1.5rem}.left-1\/2{left:50%}.z-50{z-index:50}.z-10{z-index:10}.z-0{z-index:0}.z-20{z-index:20}.mx-auto{margin-left:auto;margin-right:auto}.mb-8{margin-bottom:2rem}.mt-10{margin-top:2.5rem}.mt-6{margin-top:1.5rem}.mb-1{margin-bottom:0.25rem}.mb-16{margin-bottom:4rem}.mb-6{margin-bottom:1.5rem}.mb-4{margin-bottom:1rem}.mt-auto{margin-top:auto}.ml-2{margin-left:0.5rem}.mb-12{margin-bottom:3rem}.ml-3{margin-left:0.75rem}.mt-8{margin-top:2rem}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.aspect-\[4\/3\]{aspect-ratio:4/3}.h-20{height:5rem}.h-8{height:2rem}.h-2{height:0.5rem}.h-4{height:1rem}.h-6{height:1.5rem}.h-10{height:2.5rem}.h-full{height:100%}.h-14{height:3.5rem}.h-12{height:3rem}.min-h-screen{min-height:100vh}.w-8{width:2rem}.w-full{width:100%}.w-2{width:0.5rem}.w-6{width:1.5rem}.w-px{width:1px}.w-10{width:2.5rem}.w-14{width:3.5rem}.w-12{width:3rem}.max-w-7xl{max-width:80rem}.max-w-\[90\%\]{max-width:90%}.max-w-3xl{max-width:48rem}.max-w-2xl{max-width:42rem}.max-w-\[800px\]{max-width:800px}.-translate-x-2{--tw-translate-x:-0.5rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-x-0{--tw-translate-x:0px;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-translate-x-1\/2{--tw-translate-x:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-3{--tw-rotate:3deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.scale-105{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.cursor-pointer{}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-2{gap:0.5rem}.gap-12{gap:3rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.gap-1{gap:0.25rem}.gap-16{gap:4rem}.space-x-8 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(2rem * var(--tw-space-x-reverse));margin-left:calc(2rem * calc(1 - var(--tw-space-x-reverse)))}.-space-x-4 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(-1rem * var(--tw-space-x-reverse));margin-left:calc(-1rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-4 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1rem * var(--tw-space-x-reverse));margin-left:calc(1rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-6 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1.5rem * var(--tw-space-x-reverse));margin-left:calc(1.5rem * calc(1 - var(--tw-space-x-reverse)))}.divide-x > :not([hidden]) ~ :not([hidden]){--tw-divide-x-reverse:0;border-right-width:calc(1px * var(--tw-divide-x-reverse));border-left-width:calc(1px * calc(1 - var(--tw-divide-x-reverse)))}.divide-zinc-200\/50 > :not([hidden]) ~ :not([hidden]){border-color:rgb(228 228 231 / 0.5)}.overflow-hidden{overflow:hidden}.scroll-smooth{scroll-behavior:smooth}.rounded-lg{border-radius:0.5rem}.rounded-full{border-radius:9999px}.rounded-\[1\.5rem\]{border-radius:1.5rem}.rounded-\[2\.5rem\]{border-radius:2.5rem}.rounded-\[2rem\]{border-radius:2rem}.rounded-xl{border-radius:0.75rem}.rounded-2xl{border-radius:1rem}.rounded-\[3rem\]{border-radius:3rem}.rounded{border-radius:0.25rem}.border{border-width:1px}.border-2{border-width:2px}.border-y{border-top-width:1px;border-bottom-width:1px}.border-t{border-top-width:1px}.border-zinc-200{--tw-border-opacity:1;border-color:rgb(228 228 231 / var(--tw-border-opacity, 1))}.border-white\/60{border-color:rgb(255 255 255 / 0.6)}.border-zinc-200\/60{border-color:rgb(228 228 231 / 0.6)}.border-white{--tw-border-opacity:1;border-color:rgb(255 255 255 / var(--tw-border-opacity, 1))}.bg-zinc-900{--tw-bg-opacity:1;background-color:rgb(24 24 27 / var(--tw-bg-opacity, 1))}.bg-white\/20{background-color:rgb(255 255 255 / 0.2)}.bg-zinc-100{--tw-bg-opacity:1;background-color:rgb(244 244 245 / var(--tw-bg-opacity, 1))}.bg-zinc-200{--tw-bg-opacity:1;background-color:rgb(228 228 231 / var(--tw-bg-opacity, 1))}.bg-transparent{background-color:transparent}.bg-white\/40{background-color:rgb(255 255 255 / 0.4)}.bg-white\/30{background-color:rgb(255 255 255 / 0.3)}.bg-zinc-100\/50{background-color:rgb(244 244 245 / 0.5)}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-zinc-950{--tw-bg-opacity:1;background-color:rgb(9 9 11 / var(--tw-bg-opacity, 1))}.bg-gradient-to-tr{background-image:linear-gradient(to top right, var(--tw-gradient-stops))}.bg-\[radial-gradient\(ellipse_at_top\2c _var\(--tw-gradient-stops\)\)\]{background-image:radial-gradient(ellipse at top, var(--tw-gradient-stops))}.from-zinc-100{--tw-gradient-from:#f4f4f5 var(--tw-gradient-from-position);--tw-gradient-to:rgb(244 244 245 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-zinc-800\/40{--tw-gradient-from:rgb(39 39 42 / 0.4) var(--tw-gradient-from-position);--tw-gradient-to:rgb(39 39 42 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-zinc-950{--tw-gradient-to:rgb(9 9 11 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #09090b var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-white{--tw-gradient-to:#fff var(--tw-gradient-to-position)}.to-zinc-950{--tw-gradient-to:#09090b var(--tw-gradient-to-position)}.object-cover{object-fit:cover}.p-2{padding:0.5rem}.p-4{padding:1rem}.p-8{padding:2rem}.p-12{padding:3rem}.px-4{padding-left:1rem;padding-right:1rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-8{padding-left:2rem;padding-right:2rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-24{padding-top:6rem;padding-bottom:6rem}.px-10{padding-left:2.5rem;padding-right:2.5rem}.py-5{padding-top:1.25rem;padding-bottom:1.25rem}.pb-24{padding-bottom:6rem}.pt-32{padding-top:8rem}.text-center{text-align:center}.text-5xl{font-size:3rem;line-height:1}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-2xl{font-size:1.5rem;line-height:2rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-\[1\.15\]{line-height:1.15}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.leading-snug{line-height:1.375}.tracking-tight{letter-spacing:-0.025em}.tracking-wider{letter-spacing:0.05em}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-zinc-400{--tw-text-opacity:1;color:rgb(161 161 170 / var(--tw-text-opacity, 1))}.text-zinc-600{--tw-text-opacity:1;color:rgb(82 82 91 / var(--tw-text-opacity, 1))}.text-zinc-700{--tw-text-opacity:1;color:rgb(63 63 70 / var(--tw-text-opacity, 1))}.text-zinc-900{--tw-text-opacity:1;color:rgb(24 24 27 / var(--tw-text-opacity, 1))}.text-zinc-500{--tw-text-opacity:1;color:rgb(113 113 122 / var(--tw-text-opacity, 1))}.text-zinc-800{--tw-text-opacity:1;color:rgb(39 39 42 / var(--tw-text-opacity, 1))}.text-zinc-950{--tw-text-opacity:1;color:rgb(9 9 11 / var(--tw-text-opacity, 1))}.opacity-50{opacity:0.5}.opacity-0{opacity:0}.opacity-60{opacity:0.6}.shadow-\[0_20px_40px_-15px_rgba\(0\2c 0\2c 0\2c 0\.05\)\]{--tw-shadow:0 20px 40px -15px rgba(0,0,0,0.05);--tw-shadow-colored:0 20px 40px -15px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-\[0_0_40px_rgba\(255\2c 255\2c 255\2c 0\.1\)\]{--tw-shadow:0 0 40px rgba(255,255,255,0.1);--tw-shadow-colored:0 0 40px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.backdrop-blur-xl{--tw-backdrop-blur:blur(24px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.delay-200{transition-delay:200ms}.delay-100{transition-delay:100ms}.delay-300{transition-delay:300ms}.duration-300{transition-duration:300ms}.duration-500{transition-duration:500ms}.hover\:-translate-y-2:hover{--tw-translate-y:-0.5rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:scale-\[1\.02\]:hover{--tw-scale-x:1.02;--tw-scale-y:1.02;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:bg-zinc-800:hover{--tw-bg-opacity:1;background-color:rgb(39 39 42 / var(--tw-bg-opacity, 1))}.hover\:text-zinc-900:hover{--tw-text-opacity:1;color:rgb(24 24 27 / var(--tw-text-opacity, 1))}.hover\:shadow-\[0_20px_40px_-15px_rgba\(0\2c 0\2c 0\2c 0\.08\)\]:hover{--tw-shadow:0 20px 40px -15px rgba(0,0,0,0.08);--tw-shadow-colored:0 20px 40px -15px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.hover\:shadow-\[0_0_60px_rgba\(255\2c 255\2c 255\2c 0\.2\)\]:hover{--tw-shadow:0 0 60px rgba(255,255,255,0.2);--tw-shadow-colored:0 0 60px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.active\:scale-\[0\.98\]:active{--tw-scale-x:0.98;--tw-scale-y:0.98;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:translate-x-0{--tw-translate-x:0px;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:bg-zinc-900{--tw-bg-opacity:1;background-color:rgb(24 24 27 / var(--tw-bg-opacity, 1))}.group:hover .group-hover\:bg-zinc-200{--tw-bg-opacity:1;background-color:rgb(228 228 231 / var(--tw-bg-opacity, 1))}.group:hover .group-hover\:text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.group:hover .group-hover\:opacity-100{opacity:1}@media (min-width: 640px){.sm\:flex-row{flex-direction:row}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}}@media (min-width: 768px){.md\:mb-24{margin-bottom:6rem}.md\:flex{display:flex}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:p-10{padding:2.5rem}.md\:p-20{padding:5rem}.md\:py-32{padding-top:8rem;padding-bottom:8rem}.md\:pb-32{padding-bottom:8rem}.md\:pt-40{padding-top:10rem}.md\:text-left{text-align:left}.md\:text-6xl{font-size:3.75rem;line-height:1}.md\:text-xl{font-size:1.25rem;line-height:1.75rem}.md\:text-4xl{font-size:2.25rem;line-height:2.5rem}.md\:text-5xl{font-size:3rem;line-height:1}.md\:text-2xl{font-size:1.5rem;line-height:2rem}}@media (min-width: 1024px){.lg\:col-span-6{grid-column:span 6 / span 6}.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:translate-x-8{--tw-translate-x:2rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.lg\:-translate-x-4{--tw-translate-x:-1rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.lg\:gap-8{gap:2rem}.lg\:p-32{padding:8rem}.lg\:px-8{padding-left:2rem;padding-right:2rem}.lg\:py-40{padding-top:10rem;padding-bottom:10rem}.lg\:py-32{padding-top:8rem;padding-bottom:8rem}.lg\:pb-40{padding-bottom:10rem}.lg\:pt-48{padding-top:12rem}.lg\:text-\[4rem\]{font-size:4rem}.lg\:text-6xl{font-size:3.75rem;line-height:1}}</style></head>
+<body class="relative">
+
+    <!-- Global Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- 1. Navigation (Minimal Top Bar) -->
+    <nav class="fixed top-0 w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-2 cursor-pointer">
+                    <div class="w-8 h-8 rounded-lg bg-zinc-900 flex items-center justify-center text-white">
+                        <iconify-icon icon="solar:pen-bold" width="18"></iconify-icon>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight">희빛스토리</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">기능</a>
+                    <a href="#testimonials" class="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">크리에이터</a>
+                    <div class="h-4 w-px bg-zinc-200"></div>
+                    <a href="#" class="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">로그인</a>
+                    <a href="#cta" class="bg-zinc-900 text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-zinc-800 transition-colors">
+                        무료로 시작하기
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. Hero Section (Split Screen Asymmetric Layout) -->
+    <section class="relative pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-48 lg:pb-40 overflow-hidden min-h-screen flex items-center" >
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                
+                <!-- Left: Typography & CTA -->
+                <div class="lg:col-span-6 reveal active">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-100 border border-zinc-200 mb-8">
+                        <span class="flex h-2 w-2 rounded-full bg-zinc-900"></span>
+                        <span class="text-xs font-semibold uppercase tracking-wider text-zinc-700">새로운 퍼블리싱 경험</span>
+                    </div>
+                    
+                    <h1 class="text-5xl md:text-6xl lg:text-[4rem] font-bold text-zinc-900 tracking-tight leading-[1.15] break-keep-all"  id="el-xb9xqxru0" contenteditable="false">
+                        당신의 모든 순간이,<br>
+                        <span class="text-zinc-400">하나의 작품이 되다.</span>
+                    </h1>
+                    
+                    <p class="mt-6 text-lg md:text-xl text-zinc-600 leading-relaxed max-w-[90%] break-keep-all"  contenteditable="false">
+                        희빛스토리는 평범한 일상을 특별한 이야기로 만들어주는 프리미엄 퍼블리싱 플랫폼입니다. 오직 글쓰기에만 집중하세요.
+                    </p>
+                    
+                    <div class="mt-10 flex flex-col sm:flex-row gap-4"  contenteditable="false">
+                        <a href="#cta" class="btn-primary bg-zinc-900 text-white rounded-full px-8 py-4 text-base font-medium flex items-center justify-center gap-2">
+                            지금 바로 체험하기
+                            <div class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                                <iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon>
+                            </div>
+                        </a>
+                        <a href="#features" class="btn-secondary bg-transparent border-2 border-zinc-200 text-zinc-900 rounded-full px-8 py-4 text-base font-medium flex items-center justify-center">
+                            플랫폼 둘러보기
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Visual Asset (Mockup / Image) -->
+                <div class="lg:col-span-6 relative reveal delay-200 active">
+                    <!-- Decorative Background Element -->
+                    <div class="absolute -inset-4 bg-gradient-to-tr from-zinc-100 to-white rounded-[2.5rem] transform rotate-3 scale-105 opacity-50 z-0"></div>
+                    
+                    <div class="relative z-10 rounded-[2rem] p-2 bg-white/40 border border-white/60 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] backdrop-blur-xl animate-float">
+                        <div class="rounded-[1.5rem] overflow-hidden relative aspect-[4/3] bg-zinc-100">
+                            <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Clean workspace for writing" class="w-full h-full object-cover">
+                            
+                            <!-- Overlay UI Element -->
+                            <div class="absolute bottom-6 left-6 right-6 p-4 rounded-xl glass-card flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-white">
+                                    <iconify-icon icon="solar:check-read-linear" width="20"></iconify-icon>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-bold text-zinc-900">초안 자동 저장됨</p>
+                                    <p class="text-xs text-zinc-500">방금 전 동기화 완료</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Social Proof Strip (Metrics Bar) -->
+    <section class="py-12 border-y border-zinc-200/60 bg-white/30 backdrop-blur-sm relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-zinc-200/50">
+                <div class="text-center reveal active">
+                    <p class="text-3xl md:text-4xl font-bold text-zinc-900 mb-1">12,847<span class="text-xl text-zinc-400">+</span></p>
+                    <p class="text-sm font-medium text-zinc-500 uppercase tracking-wider">발행된 이야기</p>
+                </div>
+                <div class="text-center reveal delay-100 active">
+                    <p class="text-3xl md:text-4xl font-bold text-zinc-900 mb-1">4.87<span class="text-xl text-zinc-400">/5</span></p>
+                    <p class="text-sm font-medium text-zinc-500 uppercase tracking-wider">크리에이터 만족도</p>
+                </div>
+                <div class="text-center reveal delay-200 active">
+                    <p class="text-3xl md:text-4xl font-bold text-zinc-900 mb-1">2.3<span class="text-xl text-zinc-400">s</span></p>
+                    <p class="text-sm font-medium text-zinc-500 uppercase tracking-wider">평균 로딩 속도</p>
+                </div>
+                <div class="text-center reveal delay-300 active">
+                    <p class="text-3xl md:text-4xl font-bold text-zinc-900 mb-1">98.7<span class="text-xl text-zinc-400">%</span></p>
+                    <p class="text-sm font-medium text-zinc-500 uppercase tracking-wider">독자 완독률</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Features Section (2x2 Asymmetric Grid with Hover) -->
+    <section id="features" class="py-24 md:py-32 lg:py-40 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 md:mb-24 reveal active">
+                <h2 class="text-3xl md:text-5xl font-bold text-zinc-900 tracking-tight leading-tight break-keep-all mb-6">
+                    글쓰기에만 집중하세요,<br>나머지는 저희가 할게요.
+                </h2>
+                <p class="text-lg text-zinc-600 leading-relaxed break-keep-all">
+                    복잡한 설정이나 디자인 고민은 내려놓으세요. 당신의 영감이 끊기지 않도록, 희빛스토리가 완벽한 환경을 제공합니다.
+                </p>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                
+                <!-- Feature Card 1 -->
+                <div class="glass-card rounded-[2rem] p-8 md:p-10 group transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.08)] reveal">
+                    <div class="w-14 h-14 rounded-2xl bg-zinc-100 border border-zinc-200 flex items-center justify-center mb-8 text-zinc-900 group-hover:bg-zinc-900 group-hover:text-white transition-colors duration-300">
+                        <iconify-icon icon="solar:pen-new-square-linear" width="28"></iconify-icon>
+                    </div>
+                    <h3 class="text-2xl font-bold text-zinc-900 mb-4 break-keep-all">몰입형 에디터</h3>
+                    <p class="text-zinc-600 leading-relaxed break-keep-all mb-8">
+                        화면의 모든 방해 요소를 제거했습니다. 백지 위에 글을 쓰듯, 오직 당신의 생각과 활자만이 남는 완벽한 몰입의 경험을 선사합니다.
+                    </p>
+                    <div class="mt-auto flex items-center text-sm font-semibold text-zinc-900">
+                        <span>자세히 보기</span>
+                        <iconify-icon icon="solar:arrow-right-linear" class="ml-2 transform opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></iconify-icon>
+                    </div>
+                </div>
+
+                <!-- Feature Card 2 -->
+                <div class="glass-card rounded-[2rem] p-8 md:p-10 group transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.08)] reveal delay-100">
+                    <div class="w-14 h-14 rounded-2xl bg-zinc-100 border border-zinc-200 flex items-center justify-center mb-8 text-zinc-900 group-hover:bg-zinc-900 group-hover:text-white transition-colors duration-300">
+                        <iconify-icon icon="solar:text-field-focus-linear" width="28"></iconify-icon>
+                    </div>
+                    <h3 class="text-2xl font-bold text-zinc-900 mb-4 break-keep-all">아름다운 타이포그래피</h3>
+                    <p class="text-zinc-600 leading-relaxed break-keep-all mb-8">
+                        전문 디자이너가 설계한 최적의 행간과 자간. 어떤 디바이스에서 읽어도 눈이 편안한, 마치 한 권의 책을 읽는 듯한 독서 경험을 독자에게 제공합니다.
+                    </p>
+                    <div class="mt-auto flex items-center text-sm font-semibold text-zinc-900">
+                        <span>자세히 보기</span>
+                        <iconify-icon icon="solar:arrow-right-linear" class="ml-2 transform opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></iconify-icon>
+                    </div>
+                </div>
+
+                <!-- Feature Card 3 -->
+                <div class="glass-card rounded-[2rem] p-8 md:p-10 group transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.08)] reveal">
+                    <div class="w-14 h-14 rounded-2xl bg-zinc-100 border border-zinc-200 flex items-center justify-center mb-8 text-zinc-900 group-hover:bg-zinc-900 group-hover:text-white transition-colors duration-300">
+                        <iconify-icon icon="solar:rocket-linear" width="28"></iconify-icon>
+                    </div>
+                    <h3 class="text-2xl font-bold text-zinc-900 mb-4 break-keep-all">원클릭 퍼블리싱</h3>
+                    <p class="text-zinc-600 leading-relaxed break-keep-all mb-8">
+                        탈고가 끝났다면 버튼 하나만 누르세요. SEO 최적화, 메타데이터 생성, 소셜 미디어 공유 썸네일까지 모든 것이 자동으로 준비됩니다.
+                    </p>
+                    <div class="mt-auto flex items-center text-sm font-semibold text-zinc-900">
+                        <span>자세히 보기</span>
+                        <iconify-icon icon="solar:arrow-right-linear" class="ml-2 transform opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></iconify-icon>
+                    </div>
+                </div>
+
+                <!-- Feature Card 4 -->
+                <div class="glass-card rounded-[2rem] p-8 md:p-10 group transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.08)] reveal delay-100">
+                    <div class="w-14 h-14 rounded-2xl bg-zinc-100 border border-zinc-200 flex items-center justify-center mb-8 text-zinc-900 group-hover:bg-zinc-900 group-hover:text-white transition-colors duration-300">
+                        <iconify-icon icon="solar:chart-square-linear" width="28"></iconify-icon>
+                    </div>
+                    <h3 class="text-2xl font-bold text-zinc-900 mb-4 break-keep-all">직관적인 독자 데이터</h3>
+                    <p class="text-zinc-600 leading-relaxed break-keep-all mb-8">
+                        누가, 언제, 어떤 글을 끝까지 읽었는지 확인하세요. 직관적인 대시보드를 통해 독자의 반응을 이해하고 다음 글의 영감을 얻을 수 있습니다.
+                    </p>
+                    <div class="mt-auto flex items-center text-sm font-semibold text-zinc-900">
+                        <span>자세히 보기</span>
+                        <iconify-icon icon="solar:arrow-right-linear" class="ml-2 transform opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></iconify-icon>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Testimonials (Left Aligned / Right Cascade) -->
+    <section id="testimonials" class="py-24 lg:py-32 overflow-hidden bg-zinc-100/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                
+                <div class="lg:col-span-5 reveal">
+                    <h2 class="text-3xl md:text-5xl font-bold text-zinc-900 tracking-tight leading-tight break-keep-all mb-6">
+                        창작자들의<br>새로운 작업실
+                    </h2>
+                    <p class="text-lg text-zinc-600 leading-relaxed break-keep-all mb-8">
+                        수많은 작가, 마케터, 프로덕트 리더들이 이미 희빛스토리에서 자신만의 목소리를 세상에 전하고 있습니다.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="flex -space-x-4">
+                            <img class="w-12 h-12 rounded-full border-2 border-white" src="https://i.pravatar.cc/150?u=a1" alt="Avatar">
+                            <img class="w-12 h-12 rounded-full border-2 border-white" src="https://i.pravatar.cc/150?u=a2" alt="Avatar">
+                            <img class="w-12 h-12 rounded-full border-2 border-white" src="https://i.pravatar.cc/150?u=a3" alt="Avatar">
+                            <div class="w-12 h-12 rounded-full border-2 border-white bg-zinc-100 flex items-center justify-center text-xs font-bold text-zinc-600">+2K</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 relative">
+                    <div class="flex flex-col gap-6">
+                        <!-- Testimonial 1 -->
+                        <div class="glass-card rounded-[2rem] p-8 md:p-10 reveal transform translate-x-0 lg:translate-x-8">
+                            <div class="flex gap-1 mb-6 text-zinc-900">
+                                <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>
+                                <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>
+                                <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>
+                                <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>
+                                <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>
+                            </div>
+                            <p class="text-xl md:text-2xl text-zinc-800 font-medium leading-snug break-keep-all mb-8">
+                                "여러 블로그 플랫폼을 전전했지만, 글쓰기 자체에 이렇게 집중하게 해주는 곳은 처음입니다. 디자인을 신경 쓰지 않아도 내 글이 항상 멋지게 보여서 좋습니다."
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <img class="w-12 h-12 rounded-full bg-zinc-200" src="https://i.pravatar.cc/150?u=hayeon" alt="하윤서">
+                                <div>
+                                    <p class="font-bold text-zinc-900">하윤서</p>
+                                    <p class="text-sm text-zinc-500">독립 출판 작가</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Testimonial 2 -->
+                        <div class="glass-card rounded-[2rem] p-8 md:p-10 reveal delay-100 transform translate-x-0 lg:-translate-x-4">
+                            <div class="flex gap-1 mb-6 text-zinc-900">
+                                <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>
+                                <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>
+                                <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>
+                                <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>
+                                <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>
+                            </div>
+                            <p class="text-xl md:text-2xl text-zinc-800 font-medium leading-snug break-keep-all mb-8">
+                                "스타트업의 비전과 프로덕트 업데이트 소식을 전하는 채널로 사용 중입니다. 가독성이 워낙 좋아서 이전보다 독자들의 체류 시간이 2배 이상 늘어났습니다."
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <img class="w-12 h-12 rounded-full bg-zinc-200" src="https://i.pravatar.cc/150?u=dohyeon" alt="박도현">
+                                <div>
+                                    <p class="font-bold text-zinc-900">박도현</p>
+                                    <p class="text-sm text-zinc-500">스텔라랩스 대표</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. CTA Section (Full Bleed Inset Block with Dark Theme) -->
+    <section id="cta" class="py-12 px-4 sm:px-6 lg:px-8 mb-12">
+        <div class="max-w-7xl mx-auto bg-zinc-950 rounded-[3rem] p-12 md:p-20 lg:p-32 relative overflow-hidden text-center reveal shadow-2xl">
+            
+            <!-- Subtle Radial Gradient Background -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-[800px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-800/40 via-zinc-950 to-zinc-950 opacity-60 pointer-events-none"></div>
+            
+            <div class="relative z-10 max-w-3xl mx-auto">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight break-keep-all mb-6">
+                    지금 바로 당신의 이야기를<br>시작하세요.
+                </h2>
+                <p class="text-lg md:text-xl text-zinc-400 leading-relaxed break-keep-all mb-12 max-w-2xl mx-auto">
+                    3분만에 나만의 공간을 만들고 독자들과 소통을 시작해보세요. 첫 글을 작성하는 순간, 새로운 세상이 열립니다.
+                </p>
+                
+                <a href="#" class="inline-flex items-center justify-center bg-white text-zinc-950 rounded-full px-10 py-5 text-lg font-bold transition-all duration-400 hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_60px_rgba(255,255,255,0.2)] group">
+                    3분만에 만들어보기
+                    <div class="w-8 h-8 rounded-full bg-zinc-100 ml-3 flex items-center justify-center group-hover:bg-zinc-200 transition-colors">
+                        <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
+                    </div>
+                </a>
+                
+                <p class="mt-6 text-sm text-zinc-500">
+                    신용카드 정보 불필요 · 언제든 취소 가능
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Footer (Minimal) -->
+    <footer class="border-t border-zinc-200/60 py-12 bg-transparent relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded bg-zinc-900 flex items-center justify-center text-white">
+                        <iconify-icon icon="solar:pen-bold" width="14"></iconify-icon>
+                    </div>
+                    <span class="font-bold text-lg tracking-tight text-zinc-900">희빛스토리</span>
+                </div>
+                
+                <div class="flex items-center space-x-6 text-sm font-medium text-zinc-500">
+                    <a href="#" class="hover:text-zinc-900 transition-colors">이용약관</a>
+                    <a href="#" class="hover:text-zinc-900 transition-colors">개인정보처리방침</a>
+                    <a href="#" class="hover:text-zinc-900 transition-colors">고객센터</a>
+                </div>
+                
+                <div class="flex items-center space-x-4 text-zinc-400">
+                    <a href="#" class="hover:text-zinc-900 transition-colors">
+                        <iconify-icon icon="solar:link-circle-linear" width="24"></iconify-icon>
+                    </a>
+                    <a href="#" class="hover:text-zinc-900 transition-colors">
+                        <iconify-icon icon="solar:letter-linear" width="24"></iconify-icon>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 text-center md:text-left text-xs text-zinc-400">
+                © 2024 Heebit Story. All rights reserved. 디자인 엔지니어링 by Supanova.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Intersection Observer for Scroll Animations -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Optional: Stop observing once animated
+                        // observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach((elem) => {
+                observer.observe(elem);
+            });
+        });
+    </script>
+
+      
+    
+</body></html>
